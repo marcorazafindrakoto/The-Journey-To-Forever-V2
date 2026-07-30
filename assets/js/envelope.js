@@ -1,106 +1,74 @@
-/* ==========================================================
-   ENVELOPE
-========================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const waxSeal = document.getElementById('wax-seal');
+  const flap = document.getElementById('envelope-flap');
+  const card = document.getElementById('envelope-card');
+  const scene3 = document.getElementById('scene-3');
+  const scene5 = document.getElementById('scene-5');
+  const scene6 = document.getElementById('scene-6');
+  const scene7 = document.getElementById('scene-7');
+  const progressBar = document.getElementById('progress-bar');
 
-const seal = document.getElementById("waxSeal");
-const flap = document.getElementById("envelopeFlap");
-const letter = document.querySelector(".letter");
-const invitation = document.getElementById("invitation");
+  if (waxSeal) {
+    waxSeal.addEventListener('click', () => {
+      const openTl = gsap.timeline();
 
-if (seal && flap && letter) {
+      openTl
+        // 1. Disparition du sceau
+        .to(waxSeal, {
+          scale: 0,
+          rotation: 180,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'back.in(1.5)'
+        })
+        // 2. Ouverture du rabat
+        .add(() => {
+          if (flap) flap.classList.add('open');
+        })
+        .to({}, { duration: 0.6 })
+        
+        // 3. Glissement de la carte
+        .to(card, {
+          y: -140,
+          duration: 1,
+          ease: 'power2.out'
+        })
+        // 4. Disparition de l'enveloppe
+        .to(scene3, {
+          opacity: 0,
+          duration: 0.8,
+          delay: 0.4
+        })
+        .add(() => {
+          if (scene3) scene3.classList.add('hidden');
+          if (scene5) scene5.classList.remove('hidden');
+          if (scene6) scene6.classList.remove('hidden');
+          if (scene7) scene7.classList.remove('hidden');
+          if (progressBar) progressBar.classList.remove('hidden');
 
-    gsap.set(letter, {
-        y: 80
+          // 🔓 Rétablit le scroll sur la page
+          document.body.style.overflow = 'auto';
+
+          // 🎉 Confettis
+          launchGoldConfetti();
+        })
+        // 5. Apparition de la Révélation
+        .fromTo(scene5,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out' }
+        );
     });
+  }
+});
 
-    seal.addEventListener("click", () => {
-
-        const tl = gsap.timeline();
-
-        /* Seal */
-
-        tl.to(seal, {
-
-            scale: 0,
-
-            opacity: 0,
-
-            duration: .35,
-
-            ease: "back.in(2)"
-
-        });
-
-        /* Flap */
-
-        tl.to(flap, {
-
-            rotationX: -180,
-
-            transformOrigin: "50% 22%",
-
-            duration: .9,
-
-            ease: "power2.inOut"
-
-        });
-
-        /* Letter */
-
-        tl.to(letter, {
-
-            y: -180,
-
-            duration: 1.3,
-
-            ease: "power3.out"
-
-        }, "-=.25");
-
-        /* Zoom */
-
-        tl.to(".envelope-wrapper", {
-
-            scale: 1.08,
-
-            duration: .8,
-
-            ease: "power2.out"
-
-        }, "<");
-
-        /* Fade Envelope */
-
-        tl.to("#envelope", {
-
-            autoAlpha: 0,
-
-            duration: .8
-
-        }, "+=.4");
-
-        /* Invitation */
-
-        tl.to(invitation, {
-
-            autoAlpha: 1,
-
-            duration: .8
-
-        }, "-=.2");
-
-        /* Scroll */
-
-        tl.call(() => {
-
-            invitation.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        });
-
+function launchGoldConfetti() {
+  if (typeof confetti === 'function') {
+    confetti({
+      particleCount: 60,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#A68A6D', '#D8C5AD', '#F3E7D6', '#CBB69D'],
+      disableForReducedMotion: true
     });
-
+  }
 }

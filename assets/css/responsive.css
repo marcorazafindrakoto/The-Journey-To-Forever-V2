@@ -1,135 +1,159 @@
-/* ==========================================================
-   DESKTOP LARGE
-========================================================== */
+/* ==========================================
+   📱 RESPONSIVE MOBILE COMBINÉ
+   ========================================== */
 
-@media (max-width:1400px){
+@media screen and (max-width: 768px) {
 
-    .container{
+  /* ==========================================
+     1. OUR STORY : VERSION DESKTOP (ZIG-ZAG)
+     ========================================== */
 
-        width:min(1200px,92%);
+  /* Ligne dorée au centre */
+  .timeline-line {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: block !important;
+  }
 
-    }
+  /* Largeur à 50% pour créer le zig-zag */
+  .timeline-item {
+    width: 50% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 2rem !important;
+  }
 
-}
+  /* Bloc Gauche */
+  .timeline-item.left {
+    left: 0 !important;
+    padding-right: 20px !important;
+    padding-left: 5px !important;
+    text-align: right !important;
+  }
 
-/* ==========================================================
-   LAPTOP
-========================================================== */
+  /* Bloc Droit */
+  .timeline-item.right {
+    left: 50% !important;
+    padding-left: 20px !important;
+    padding-right: 5px !important;
+    text-align: left !important;
+  }
 
-@media (max-width:1200px){
+  /* Puces dorées sur la ligne centrale */
+  .timeline-item.left .timeline-dot {
+    right: -6px !important;
+    left: auto !important;
+  }
 
-    .grid-3{
+  .timeline-item.right .timeline-dot {
+    left: -6px !important;
+    right: auto !important;
+  }
 
-        grid-template-columns:
+  /* Ajustements du texte et des cartes pour mobile */
+  .timeline-content,
+  .story-card {
+    padding: 0.8rem 0.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 
-            repeat(2,1fr);
+  .timeline-title {
+    font-size: 0.85rem !important;
+  }
 
-    }
+  .timeline-desc {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
 
-}
+  .timeline-img {
+    max-width: 40px !important;
+    height: auto !important;
+  }
 
-/* ==========================================================
-   TABLETTE
-========================================================== */
 
-@media (max-width:992px){
+  /* ==========================================
+     2. THE BIG DAY : 1 COLONNE (UNE SOUS L'AUTRE)
+     ========================================== */
 
-    .section{
+  /* Espace en haut sous la barre 1-2-3 */
+  #scene-7 {
+    padding-top: 90px !important;
+  }
 
-        padding:
+  .details-header {
+    margin-top: 20px !important;
+    margin-bottom: 25px !important;
+    text-align: center !important;
+  }
 
-            var(--space-6)
+  .details-header .section-title {
+    font-size: 1.8rem !important;
+    letter-spacing: 2px !important;
+  }
 
-            0;
+  /* Grille Ceremony & Reception en 1 seule colonne */
+  .details-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+  }
 
-    }
+  /* Style des cartes (Ceremony, Reception, After Party) */
+  .event-card,
+  .detail-card {
+    width: 100% !important;
+    max-width: 340px !important;
+    padding: 1.5rem 1rem !important;
+    position: relative !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(184, 156, 128, 0.4) !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
 
-    .grid-2,
+  .event-title {
+    font-size: 0.95rem !important;
+    letter-spacing: 1.5px !important;
+  }
 
-    .grid-3{
+  .event-time, 
+  .venue-name, 
+  .venue-address {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
 
-        grid-template-columns:1fr;
+  .btn-map,
+  .btn-secondary {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.7rem !important;
+    margin-top: 1rem !important;
+  }
 
-    }
+  .card-corner-img {
+    width: 28px !important;
+    top: 8px !important;
+    right: 8px !important;
+    position: absolute !important;
+  }
 
-    h1{
+  /* After Party centré en bas */
+  .after-party-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 20px !important;
+    padding: 0 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 
-        font-size:4rem;
-
-    }
-
-    h2{
-
-        font-size:3rem;
-
-    }
-
-}
-
-/* ==========================================================
-   MOBILE
-========================================================== */
-
-@media (max-width:768px){
-
-    html{
-
-        font-size:15px;
-
-    }
-
-    .container{
-
-        width:92%;
-
-    }
-
-    h1{
-
-        font-size:3rem;
-
-    }
-
-    h2{
-
-        font-size:2.3rem;
-
-    }
-
-    .section{
-
-        padding:
-
-            var(--space-5)
-
-            0;
-
-    }
-
-}
-
-/* ==========================================================
-   SMALL MOBILE
-========================================================== */
-
-@media (max-width:480px){
-
-    html{
-
-        font-size:14px;
-
-    }
-
-    h1{
-
-        font-size:2.5rem;
-
-    }
-
-    h2{
-
-        font-size:2rem;
-
-    }
-
+  .after-party-container .event-card {
+    width: 100% !important;
+    max-width: 340px !important;
+  }
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 600 400">
+
+    <defs>
+
+        <linearGradient id="paperGradient"
+            x1="0%"
+            y1="0%"
+            x2="0%"
+            y2="100%">
+
+            <stop offset="0%" stop-color="#FBF8F3"/>
+
+            <stop offset="100%" stop-color="#E8D7C2"/>
+
+        </linearGradient>
+
+        <linearGradient id="leftGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%">
+
+            <stop offset="0%" stop-color="#FDFBF8"/>
+
+            <stop offset="100%" stop-color="#EAD8C2"/>
+
+        </linearGradient>
+
+        <linearGradient id="rightGradient"
+            x1="100%"
+            y1="0%"
+            x2="0%"
+            y2="100%">
+
+            <stop offset="0%" stop-color="#FDFBF8"/>
+
+            <stop offset="100%" stop-color="#EAD8C2"/>
+
+        </linearGradient>
+
+        <linearGradient id="bottomGradient"
+            x1="0%"
+            y1="0%"
+            x2="0%"
+            y2="100%">
+
+            <stop offset="0%" stop-color="#F3E8D8"/>
+
+            <stop offset="100%" stop-color="#E3CFB5"/>
+
+        </linearGradient>
+
+        <filter id="shadow"
+                x="-50%"
+                y="-50%"
+                width="200%"
+                height="200%">
+
+            <feDropShadow
+                dx="0"
+                dy="12"
+                stdDeviation="12"
+                flood-color="#000"
+                flood-opacity=".18"/>
+
+        </filter>
+
+    </defs>
+
+    <!-- BACK -->
+
+    <rect
+
+        x="70"
+
+        y="110"
+
+        width="460"
+
+        height="230"
+
+        rx="12"
+
+        fill="url(#paperGradient)"
+
+        filter="url(#shadow)"
+
+    />
+
+    <!-- LEFT FOLD -->
+
+    <path
+
+        d="
+
+        M70 110
+
+        L300 235
+
+        L70 340
+
+        Z
+
+        "
+
+        fill="url(#leftGradient)"
+
+    />
+
+    <!-- RIGHT FOLD -->
+
+    <path
+
+        d="
+
+        M530 110
+
+        L300 235
+
+        L530 340
+
+        Z
+
+        "
+
+        fill="url(#rightGradient)"
+
+    />
+
+    <!-- BOTTOM -->
+
+    <path
+
+        d="
+
+        M70 340
+
+        L300 175
+
+        L530 340
+
+        Z
+
+        "
+
+        fill="url(#bottomGradient)"
+
+    />
+
+</svg>

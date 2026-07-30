@@ -1,0 +1,773 @@
+/* Reset & Fond Ivoire Chaleureux */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-ivory) !important;
+  color: var(--color-text-dark);
+  font-family: var(--font-serif);
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Canvas de particules & Confettis */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none !important;
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Structure des Scènes */
+.scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene.hidden {
+  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Typographies */
+.main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
+  text-align: center;
+}
+
+.tagline {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.quote-container { margin: 0.5rem 0; text-align: center; }
+.quote { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; opacity: 0.8; }
+
+/* Bouton Principal */
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-text-dark) !important;
+  padding: 0.9rem 2.2rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+  transition: all 0.3s ease;
+  outline: none;
+  margin-top: 1.5rem;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(166, 138, 109, 0.3);
+}
+
+.instruction-text {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* 📍 BARRE DE PROGRESSION 1-2-3 (CLIQUABLE) */
+.progress-container {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.progress-container.hidden { opacity: 0; pointer-events: none; }
+
+.progress-step {
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-gold-light);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-serif);
+}
+
+.progress-step:hover {
+  border-color: var(--color-gold);
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.progress-step.active {
+  background-color: var(--color-gold);
+  color: #ffffff;
+  border-color: var(--color-gold);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(166, 138, 109, 0.3);
+}
+
+.progress-line {
+  width: 30px;
+  height: 1px;
+  background-color: var(--color-gold-light);
+}
+
+/* --- SCÈNE 3 : ENVELOPPE 3D --- */
+.envelope-wrapper {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.envelope {
+  position: relative;
+  width: 340px;
+  height: 230px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover { transform: translateY(-5px); }
+
+.envelope-back {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #E6DAAF;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(11, 11, 11, 0.12);
+  z-index: 1;
+}
+
+.envelope-card {
+  position: absolute;
+  bottom: 10px;
+  width: 90%; height: 85%;
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-gold-light);
+  border-radius: 2px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hint {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.envelope-pocket {
+  position: absolute;
+  top: 0; left: 0; width: 0; height: 0;
+  border-left: 170px solid #EFE6D8;
+  border-right: 170px solid #E4D7C5;
+  border-bottom: 125px solid #EFE6D8;
+  border-top: 105px solid transparent;
+  border-radius: 0 0 4px 4px;
+  z-index: 3;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0; width: 0; height: 0;
+  border-left: 170px solid transparent;
+  border-right: 170px solid transparent;
+  border-top: 125px solid #DDD0BD;
+  transform-origin: top;
+  z-index: 4;
+  transition: transform 0.6s ease-in-out;
+}
+
+.envelope-flap.open { transform: rotateX(180deg); z-index: 1; }
+
+.wax-seal {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px; height: 65px;
+  background: radial-gradient(circle, #B89775 0%, #A68A6D 70%, #8C7156 100%);
+  border-radius: 50%;
+  z-index: 5;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), inset 0 2px 3px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.wax-seal:hover { transform: translate(-50%, -50%) scale(1.08); }
+
+.monogram {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-bg-ivory);
+}
+
+/* --- SCÈNE 5 : CARTE DE RÉVÉLATION --- */
+.revelation-card {
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-gold-light);
+  padding: 3rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(11, 11, 11, 0.08);
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.invitation-subtitle { font-size: 0.9rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-gold); }
+.couple-names { font-family: var(--font-cursive); font-size: clamp(3.5rem, 8vw, 5.5rem); color: var(--color-text-dark); margin: 0.5rem 0; }
+.ampersand { font-family: var(--font-serif); font-size: 0.6em; font-style: italic; color: var(--color-gold); }
+.invitation-text { font-size: 1.2rem; letter-spacing: 0.1em; font-style: italic; }
+.invitation-text-sub { font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold); }
+.divider-gold { color: var(--color-gold); font-size: 0.8rem; margin: 0.5rem 0; }
+.scroll-hint { font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold); opacity: 0.7; margin-top: 1rem; }
+
+/* 🎈 EFFET DE FLOTTEMENT DOUX (FLOATING) */
+.floating-card {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 15px 35px rgba(166, 138, 109, 0.1);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(166, 138, 109, 0.18);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 15px 35px rgba(166, 138, 109, 0.1);
+  }
+}
+
+/* 👨‍👩‍👧‍👦 DISPOSITION PARALLÈLE DES FAMILLES */
+.families-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin: 1.5rem 0;
+  gap: 1rem;
+}
+
+.family-column {
+  flex: 1;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.family-role {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.family-line {
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.family-line strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+.family-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--color-gold-light) 20%, var(--color-gold-light) 80%, transparent);
+  align-self: stretch;
+}
+
+/* SCÈNES SCROLLABLES */
+.scene-scroll {
+  width: 100%; max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; z-index: 2; position: relative;
+}
+.scene-scroll.hidden { display: none !important; }
+
+/* ⏳ COMPTE À REBOURS HAUT DE GAMME */
+.countdown-wrapper {
+  margin: 4rem auto 2.5rem;
+  text-align: center;
+}
+
+.countdown-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-gold-light);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  min-width: 95px;
+  box-shadow: 0 10px 25px rgba(166, 138, 109, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.countdown-box:hover {
+  transform: translateY(-3px);
+}
+
+.countdown-box span {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-text-dark);
+  line-height: 1;
+  font-family: var(--font-serif);
+}
+
+.countdown-box label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 0.6rem;
+}
+
+/* Audio Control */
+.audio-control {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 100;
+  background: rgba(255, 255, 255, 0.8); border: 1px solid var(--color-gold);
+  width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; backdrop-filter: blur(5px);
+}
+.audio-control.hidden { opacity: 0; pointer-events: none; }
+
+/* Timeline & Details Cards */
+.timeline-header, .details-header { text-align: center !important; margin-bottom: 3rem; }
+.section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; }
+.section-subtitle { font-size: 1.1rem; font-style: italic; color: var(--color-gold); margin-top: 0.5rem; }
+
+.timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
+.timeline-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: linear-gradient(180deg, transparent, var(--color-gold) 15%, var(--color-gold) 85%, transparent); transform: translateX(-50%); }
+.timeline-item { position: relative; width: 50%; padding: 1.5rem 2.5rem; }
+.timeline-item.left { left: 0; text-align: right; }
+.timeline-item.right { left: 50%; text-align: left; }
+.timeline-dot { position: absolute; top: 2rem; width: 14px; height: 14px; background-color: var(--color-bg-ivory); border: 2px solid var(--color-gold); border-radius: 50%; z-index: 2; }
+.timeline-item.left .timeline-dot { right: -8px; }
+.timeline-item.right .timeline-dot { left: -8px; }
+.timeline-content { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px); border: 1px solid var(--color-gold-light); padding: 1.8rem; border-radius: 4px; }
+.timeline-date { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold); font-weight: 600; display: block; margin-bottom: 0.4rem; }
+.timeline-title { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.6rem; }
+.timeline-desc { font-size: 0.95rem; line-height: 1.6; opacity: 0.85; }
+
+/* ==========================================
+   ✨ REPARATION COMPLETE : CARTE & DETAILS
+   ========================================== */
+
+/* 1. Grille des cartes du haut (Ceremony & Reception) */
+.details-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 2rem !important;
+  max-width: 900px !important;
+  margin: 0 auto 2rem auto !important;
+  width: 100% !important;
+}
+
+/* 2. Style Unifié pour TOUTES les cartes (Ceremony, Reception, After Party) */
+.detail-card,
+.event-card {
+  position: relative !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(184, 156, 128, 0.4) !important;
+  padding: 2.5rem 2rem !important;
+  text-align: center !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.3s ease !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.detail-card:hover,
+.event-card:hover {
+  border-color: rgba(184, 156, 128, 0.8) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 3. Conteneur et centrage de l'After Party */
+.after-party-container {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-bottom: 3rem !important;
+}
+
+.after-party-container .event-card {
+  max-width: 430px !important;
+  width: 100% !important;
+}
+
+/* 4. Boutons VIEW MAP encadrés (Correction de la couleur violette/bleue) */
+.detail-card a,
+.event-card a,
+.btn-map,
+.btn-secondary {
+  display: inline-block !important;
+  margin-top: 1.2rem !important;
+  padding: 0.6rem 1.8rem !important;
+  border: 1px solid #b89c80 !important;
+  color: #7a6a58 !important;
+  font-family: inherit !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 2px !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Effet au survol des boutons */
+.detail-card a:hover,
+.event-card a:hover,
+.btn-map:hover,
+.btn-secondary:hover {
+  background-color: #b89c80 !important;
+  color: #ffffff !important;
+}
+
+/* 5. Image PNG dans le coin supérieur droit */
+.card-corner-img {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  width: 40px !important;
+  height: auto !important;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.detail-card:hover .card-corner-img,
+.event-card:hover .card-corner-img {
+  opacity: 0.85 !important;
+}
+.wedding-footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-gold-light); text-align: center; }
+.footer-names { font-family: var(--font-cursive); font-size: 2.5rem; }
+.footer-tagline { font-size: 0.95rem; font-style: italic; color: var(--color-gold); margin-top: 0.3rem; }
+/* --- 🖼️ IMAGES PNG TIMELINE --- */
+.timeline-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.timeline-img {
+  max-width: 100px;
+  height: auto;
+  object-fit: contain;
+  /* Optionnel : un léger effet de flottement doux sur les illustrations */
+  filter: drop-shadow(0 8px 15px rgba(166, 138, 109, 0.15));
+  transition: transform 0.4s ease;
+}
+
+.timeline-content:hover .timeline-img {
+  transform: scale(1.08) translateY(-4px);
+}
+/* --- ✨ ANIMATIONS DYNAMIQUES HERO --- */
+
+/* Apparition fluide des éléments au chargement */
+#scene-1 h1 {
+  animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#scene-1 .subtitle {
+  animation: heroFadeUp 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#scene-1 blockquote {
+  animation: heroFadeUp 1.2s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Sélectionne tous les boutons ou liens de la scène 1 pour être sûr de ne pas le rater */
+#scene-1 button, 
+#scene-1 a, 
+#scene-1 .btn-primary,
+#scene-1 .btn {
+  display: inline-block;
+  opacity: 1; /* Garantit que le bouton reste visible par défaut */
+  animation: heroFadeUp 1.2s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both, pulseGlow 3s 1.8s infinite alternate;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulsation douce sur le bouton */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(184, 156, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(184, 156, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(184, 156, 128, 0);
+  }
+}
+
+/* Mouvement doux des particules */
+.particle, .star {
+  animation: floatParticles 8s ease-in-out infinite alternate !important;
+}
+
+@keyframes floatParticles {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(8deg); }
+}
+/* --- ✉️ PHOTO DANS L'ENVELOPPE --- */
+
+.letter {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  padding: 6px; /* Petite marge style Polaroid/Photo encadrée */
+}
+
+.letter-photo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.letter-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Effet au survol de la photo */
+.letter:hover .letter-photo {
+  transform: scale(1.05);
+}
+
+/* Texte discret par-dessus la photo qui apparaît au survol */
+.letter-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.letter:hover .letter-photo-overlay {
+  opacity: 1;
+}
+/* --- 🍸 CARTE AFTER PARTY DISCRÈTE --- */
+
+/* --- 🍸 AFTER PARTY HARMONIEUX --- */
+
+/* Centrage et taille ajustée sous les 2 cartes */
+.after-party-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* --- 🔲 BOUTON "VIEW MAP" ENCADRÉ POUR L'AFTER PARTY --- */
+
+/* --- 🍸 AFTER PARTY ENCADRÉ & HARMONISÉ --- */
+
+.after-party-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+/* On réutilise la même classe .event-card avec une largeur ajustée pour le centrage */
+.after-party-container .event-card {
+  max-width: 450px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(184, 156, 128, 0.4);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.after-party-container .event-card:hover {
+  border-color: rgba(184, 156, 128, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Style du bouton VIEW MAP encadré */
+.after-party-container .btn-map,
+.after-party-container a.btn-map {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.8rem;
+  border: 1px solid #b89c80;
+  color: #7a6a58;
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.after-party-container .btn-map:hover,
+.after-party-container a.btn-map:hover {
+  background-color: #b89c80;
+  color: #ffffff;
+}
+/* --- 🖼️ IMAGE PNG DÉCORATIVE EN HAUT À DROITE DES CARTES --- */
+
+/* S'assurer que le repère de positionnement se fait par rapport à la carte */
+.event-card {
+  position: relative;
+  overflow: hidden; /* Empêche l'image de dépasser si elle est grande */
+}
+
+/* Image positionnée en haut à droite */
+.card-corner-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 45px;          /* Ajuste la taille selon tes images */
+  height: auto;
+  opacity: 0.6;         /* Transparence subtile pour rester élégant */
+  pointer-events: none; /* Ne gêne pas les clics sur la carte */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Léger effet au survol de la carte */
+.event-card:hover .card-corner-img {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+
+/* --- 📱 Adaptabilité sur Mobile --- */
+@media (max-width: 768px) {
+  .card-corner-img {
+    width: 30px; /* Plus petit sur mobile pour ne pas chevaucher le texte */
+    top: 6px;
+    right: 6px;
+  }
+}

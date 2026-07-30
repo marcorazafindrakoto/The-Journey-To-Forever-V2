@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 400">
+
+    <defs>
+
+        <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+
+            <stop offset="0%" stop-color="#FCFAF7"/>
+
+            <stop offset="100%" stop-color="#E9D8C3"/>
+
+        </linearGradient>
+
+        <linearGradient id="paperDark" x1="0" y1="0" x2="0" y2="1">
+
+            <stop offset="0%" stop-color="#F5EBDC"/>
+
+            <stop offset="100%" stop-color="#E2CFB6"/>
+
+        </linearGradient>
+
+        <linearGradient id="flap" x1="0" y1="0" x2="0" y2="1">
+
+            <stop offset="0%" stop-color="#FCF8F3"/>
+
+            <stop offset="100%" stop-color="#E8D4BC"/>
+
+        </linearGradient>
+
+        <filter id="shadow">
+
+            <feDropShadow dx="0"
+                          dy="10"
+                          stdDeviation="10"
+                          flood-opacity=".18"/>
+
+        </filter>
+
+    </defs>
+
+    <!-- BACK -->
+
+    <rect
+
+        id="back"
+
+        x="70"
+
+        y="120"
+
+        width="460"
+
+        height="220"
+
+        rx="12"
+
+        fill="url(#paper)"
+
+        filter="url(#shadow)"
+
+    />
+
+    <!-- LEFT -->
+
+    <polygon
+
+        id="leftFold"
+
+        points="70,120 300,240 70,340"
+
+        fill="#F6EEDF"
+
+    />
+
+    <!-- RIGHT -->
+
+    <polygon
+
+        id="rightFold"
+
+        points="530,120 300,240 530,340"
+
+        fill="#F6EEDF"
+
+    />
+
+    <!-- BOTTOM -->
+
+    <polygon
+
+        id="bottomFold"
+
+        points="70,340 300,185 530,340"
+
+        fill="url(#paperDark)"
+
+    />
+
+    <!-- TOP FLAP -->
+
+    <polygon
+
+        id="topFlap"
+
+        points="70,120 530,120 300,275"
+
+        fill="url(#flap)"
+
+    />
+
+</svg>
