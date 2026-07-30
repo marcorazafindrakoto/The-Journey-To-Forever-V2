@@ -1,610 +1,255 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Journey to Forever - Marco & Anaël</title>
 
-    <meta charset="UTF-8">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>
-        The Journey To Forever | Marco & Anaël
-    </title>
-
-    <meta
-        name="description"
-        content="The Journey To Forever">
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- CSS -->
-
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/intro.css">
-    <link rel="stylesheet" href="assets/css/envelope.css">
-    <link rel="stylesheet" href="assets/css/story.css">
-    <link rel="stylesheet" href="assets/css/gallery.css">
-    <link rel="stylesheet" href="assets/css/countdown.css">
-    <link rel="stylesheet" href="assets/css/rsvp.css">
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css?v=99">
 </head>
-
 <body>
 
-<div id="app">
+  <!-- Canvas de particules dorées & confettis -->
+  <canvas id="particles-canvas"></canvas>
 
-<!-- =======================================================
-     INTRO
-======================================================= -->
+  <!-- Audio de fond -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/beautiful-birds.mp3" type="audio/mpeg">
+  </audio>
 
-<section
-    id="intro"
-    class="section fullscreen">
+  <!-- Indicateur Audio -->
+  <div id="audio-control" class="audio-control hidden">
+    <span class="audio-icon">💞​</span>
+  </div>
 
-    <div class="intro-background">
+  <!-- Barre de progression 1-2-3 cliquable -->
+  <div id="progress-bar" class="progress-container hidden">
+    <span class="progress-step" data-step="1">1</span>
+    <div class="progress-line"></div>
+    <span class="progress-step" data-step="2">2</span>
+    <div class="progress-line"></div>
+    <span class="progress-step" data-step="3">3</span>
+  </div>
 
-        <div class="intro-overlay"></div>
+  <main id="app">
 
-    </div>
-
-    <div class="container">
-
-        <div class="intro-content">
-
-            <p class="intro-subtitle">
-
-                Every love story begins with a single moment.
-
-            </p>
-
-            <h1 class="intro-title">
-
-                The Journey
-
-                <br>
-
-                <span>to</span>
-
-                <br>
-
-                Forever
-
-            </h1>
-
-            <p class="intro-quote">
-
-                "Every journey begins with a single step."
-
-            </p>
-
-            <button
-                id="beginJourneyBtn"
-                class="begin-button">
-
-                Begin the Journey
-
-            </button>
-
+    <!-- 🎬 SCÈNE 1 : Welcome / Hero -->
+    <section id="scene-1" class="scene active">
+      <div class="scene-content">
+        <h1 class="main-title">The Journey to Forever</h1>
+        <p class="tagline">Every love story begins with a single moment.</p>
+        
+        <div class="quote-container">
+          <p class="quote">"Every journey begins with a single step."</p>
         </div>
 
-    </div>
+        <button id="btn-start" class="btn-primary">
+          <span>Begin the Journey</span>
+        </button>
+      </div>
+    </section>
 
-</section>
-
-<!-- =======================================================
-     ENVELOPE
-======================================================= -->
-
-<section
-    id="envelope"
-    class="section fullscreen">
-        <div class="container">
-
-        <div class="envelope-scene">
-
-            <div class="envelope-light"></div>
-
-            <div class="envelope-shadow"></div>
-
-            <div class="envelope-wrapper">
-
-                <!-- Letter -->
-
-                <div class="letter">
-
-                    <div class="letter-paper">
-
-                        <p class="letter-eyebrow">
-                            Together with their families
-                        </p>
-
-                        <h2 class="letter-name">
-                            Marco
-                        </h2>
-
-                        <div class="letter-ampersand">
-                            &
-                        </div>
-
-                        <h2 class="letter-name">
-                            Anaël
-                        </h2>
-
-                        <p class="letter-text">
-
-                            request the honour of your presence
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- Envelope Body -->
-
-                <img
-
-                    src="assets/svg/body.svg"
-
-                    alt="Envelope"
-
-                    class="envelope-body"
-
-                >
-
-                <!-- Envelope Flap -->
-
-                <img
-
-                    src="assets/svg/flap.svg"
-
-                    alt="Envelope Flap"
-
-                    class="envelope-flap"
-
-                    id="envelopeFlap"
-
-                >
-
-                <!-- Wax Seal -->
-
-                <button
-
-                    class="wax-seal"
-
-                    id="waxSeal"
-
-                    aria-label="Open invitation">
-
-                    <span>M • A</span>
-
-                </button>
-
+    <!-- 🎬 SCÈNE 3 : Enveloppe Interactive -->
+    <section id="scene-3" class="scene hidden">
+      <div class="scene-content">
+        <div class="envelope-wrapper">
+          <div id="envelope" class="envelope">
+            <div class="envelope-back"></div>
+            
+            <!-- La carte contient la photo -->
+            <div class="envelope-card">
+              <div class="card-photo-wrapper">
+                <img src="assets/images/letter-photo.jpg" alt="Photo de couple" class="card-photo">
+              </div>
             </div>
 
+            <div class="envelope-pocket"></div>
+            <div id="envelope-flap" class="envelope-flap"></div>
+            <div id="wax-seal" class="wax-seal">
+              <span class="monogram">M &amp; A</span>
+            </div>
+          </div>
         </div>
-
-    </div>
-
-</section>
-
-<!-- =======================================================
-     INVITATION
-======================================================= -->
-
-<section
-
-    id="invitation"
-
-    class="section fullscreen">
-
-    <div class="container">
-
-        <div class="invitation-card">
-
-            <p class="invitation-overline">
-
-                Save the Date
-
-            </p>
-
-            <h2 class="invitation-title">
-
-                Marco
-
-                <span>&</span>
-
-                Anaël
-
-            </h2>
-
-            <p class="invitation-date">
-
-                11 September 2027
-
-            </p>
-
-            <div class="divider"></div>
-
-            <p class="invitation-message">
-
-                We would be honoured to celebrate
-                this unforgettable day with you.
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =======================================================
-     STORY
-======================================================= -->
-
-<section
-
-    id="story"
-
-    class="section">
-        <div class="container">
-
-        <div class="section-header">
-
-            <p class="section-overline">
-                Our Story
-            </p>
-
-            <h2 class="section-title">
-
-                Every Journey Has
-                <br>
-                A Beginning
-
-            </h2>
-
-            <div class="divider"></div>
-
-        </div>
-
-        <div class="story-timeline">
-
-            <article class="timeline-item">
-
-                <div class="timeline-year">
-                    2023
-                </div>
-
-                <h3>
-                    The First Hello
-                </h3>
-
-                <p>
-
-                    Every great adventure begins
-                    with a simple conversation.
-
-                </p>
-
-            </article>
-
-            <article class="timeline-item">
-
-                <div class="timeline-year">
-                    2024
-                </div>
-
-                <h3>
-                    Falling in Love
-                </h3>
-
-                <p>
-
-                    Day after day,
-                    friendship became love.
-
-                </p>
-
-            </article>
-
-            <article class="timeline-item">
-
-                <div class="timeline-year">
-                    2026
-                </div>
-
-                <h3>
-                    The Proposal
-                </h3>
-
-                <p>
-
-                    One unforgettable question.
-                    One beautiful answer.
-
-                </p>
-
-            </article>
-
-            <article class="timeline-item">
-
-                <div class="timeline-year">
-                    2027
-                </div>
-
-                <h3>
-                    Forever Begins
-                </h3>
-
-                <p>
-
-                    The day our next chapter
-                    officially starts.
-
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =======================================================
-     GALLERY
-======================================================= -->
-
-<section
-
-    id="gallery"
-
-    class="section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <p class="section-overline">
-
-                Memories
-
-            </p>
-
-            <h2 class="section-title">
-
-                Moments We Treasure
-
-            </h2>
-
-            <div class="divider"></div>
-
-        </div>
-
-        <div class="gallery-grid">
-
-            <div class="gallery-item"></div>
-
-            <div class="gallery-item large"></div>
-
-            <div class="gallery-item"></div>
-
-            <div class="gallery-item"></div>
-
-            <div class="gallery-item"></div>
-
-            <div class="gallery-item large"></div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =======================================================
-     COUNTDOWN
-======================================================= -->
-
-<section
-
-    id="countdown"
-
-    class="section fullscreen">
-        <div class="container">
-
-        <div class="section-header">
-
-            <p class="section-overline">
-                Wedding Countdown
-            </p>
-
-            <h2 class="section-title">
-                Counting Every Moment
-            </h2>
-
-            <div class="divider"></div>
-
-        </div>
-
-        <div class="countdown-grid">
-
-            <div class="countdown-item">
-
-                <span id="days">000</span>
-
-                <small>Days</small>
-
+        <p class="instruction-text">Tap the wax seal to break it</p>
+      </div>
+    </section>
+
+    <!-- 🎬 SCÈNE 5 : Révélation de l'Invitation & Familles -->
+    <section id="scene-5" class="scene hidden">
+      <div class="scene-content">
+        <!-- Carte principale avec animation de flottement douce -->
+        <div class="revelation-card floating-card">
+          <p class="invitation-subtitle">Together with their families</p>
+          <h2 class="couple-names">Marco <span class="ampersand">&amp;</span> Anaël</h2>
+          <p class="invitation-text">invite you to celebrate their wedding</p>
+          
+          <p class="divider-gold">✦ ✦ ✦</p>
+
+          <!-- 👨‍👩‍👧‍👦 Bloc Familles Parallèle -->
+          <div class="families-container">
+            <!-- Famille de Marco -->
+            <div class="family-column">
+              <h4 class="family-role">Family of Marco</h4>
+              <p class="family-line"><strong>Grandparents:</strong><br>M. &amp; Mme Jean Dupont</p>
+              <p class="family-line"><strong>Parents:</strong><br>M. &amp; Mme Marc Dupont</p>
             </div>
 
-            <div class="countdown-item">
+            <div class="family-divider"></div>
 
-                <span id="hours">00</span>
-
-                <small>Hours</small>
-
+            <!-- Famille d'Anaël -->
+            <div class="family-column">
+              <h4 class="family-role">Family of Anaël</h4>
+              <p class="family-line"><strong>Grandparents:</strong><br>M. &amp; Mme Pierre Martin</p>
+              <p class="family-line"><strong>Parents:</strong><br>M. &amp; Mme Thomas Martin</p>
             </div>
+          </div>
 
-            <div class="countdown-item">
+          <p class="divider-gold">✦ ✦ ✦</p>
 
-                <span id="minutes">00</span>
+          <p class="invitation-text-sub">Saturday, September 19, 2026</p>
+          <p class="scroll-hint">↓ Scroll down to explore our story ↓</p>
+        </div>
+      </div>
+    </section>
 
-                <small>Minutes</small>
+    <!-- 🎬 SCÈNE 6 : Timeline "Our Story" -->
+    <section id="scene-6" class="scene-scroll hidden">
+      <div class="timeline-header">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">The chapters that brought us here</p>
+      </div>
 
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Chapitre 1 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-image-wrapper">
+              <img src="assets/images/story-1.png" alt="First Encounter" class="timeline-img">
             </div>
-
-            <div class="countdown-item">
-
-                <span id="seconds">00</span>
-
-                <small>Seconds</small>
-
-            </div>
-
+            <span class="timeline-date">October 2018</span>
+            <h3 class="timeline-title">The First Encounter</h3>
+            <p class="timeline-desc">A chance meeting over a cup of coffee that turned into hours of endless conversation.</p>
+          </div>
         </div>
 
-    </div>
-
-</section>
-
-<!-- =======================================================
-     RSVP
-======================================================= -->
-
-<section
-    id="rsvp"
-    class="section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <p class="section-overline">
-                RSVP
-            </p>
-
-            <h2 class="section-title">
-                We Hope You'll Join Us
-            </h2>
-
-            <div class="divider"></div>
-
+        <!-- Chapitre 2 -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-image-wrapper">
+              <img src="assets/images/story-2.png" alt="First Adventure" class="timeline-img">
+            </div>
+            <span class="timeline-date">Summer 2020</span>
+            <h3 class="timeline-title">The First Adventure</h3>
+            <p class="timeline-desc">Exploring new horizons together and realizing we were the perfect travel partners for life.</p>
+          </div>
         </div>
 
-        <form class="rsvp-form">
+        <!-- Chapitre 3 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-image-wrapper">
+              <img src="assets/images/story-3.png" alt="The Proposal" class="timeline-img">
+            </div>
+            <span class="timeline-date">December 2024</span>
+            <h3 class="timeline-title">The Proposal</h3>
+            <p class="timeline-desc">Under a starry night sky, a simple "Yes" marked the beginning of our forever.</p>
+          </div>
+        </div>
 
-            <input
-                type="text"
-                placeholder="Full Name"
-                required>
+      </div>
+    </section>
 
-            <input
-                type="email"
-                placeholder="Email"
-                required>
+    <!-- 🎬 SCÈNE 7 : Event Details + Compte à Rebours + Footer -->
+    <section id="scene-7" class="scene-scroll hidden">
+      <div class="details-header">
+        <h2 class="section-title">The Big Day</h2>
+        <p class="section-subtitle">Saturday, September 19, 2026</p>
+      </div>
 
-            <select required>
+      <div class="details-grid">
+        <!-- ⛪ CÉRÉMONIE -->
+        <div class="event-card">
+          <img src="assets/images/story-1.png" alt="" class="card-corner-img">
+          <div class="event-icon-sparkle">✦</div>
+          <h3 class="event-title">THE CEREMONY</h3>
+          <p class="event-time">15:00 PM</p>
+          <p class="venue-name">Sainte-Marie Church</p>
+          <p class="venue-address">12 Rue des Fleurs, Paris</p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-map">VIEW MAP</a>
+        </div>
 
-                <option value="">
-                    Will you attend?
-                </option>
+        <!-- 🥂 RÉCEPTION -->
+        <div class="event-card">
+          <img src="assets/images/story-1.png" alt="" class="card-corner-img">
+          <div class="event-icon-sparkle">❖</div>
+          <h3 class="event-title">THE RECEPTION</h3>
+          <p class="event-time">18:00 PM</p>
+          <p class="venue-name">Château de Lumière</p>
+          <p class="venue-address">45 Avenue du Domaine, Versailles</p>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-map">VIEW MAP</a>
+        </div>
+      </div>
 
-                <option>
-                    Joyfully Accept
-                </option>
+      <!-- 🍸 AFTER PARTY -->
+      <div class="after-party-container">
+        <div class="event-card">
+          <img src="assets/images/story-1.png" alt="" class="card-corner-img">
+          <div class="event-icon-sparkle">✦</div>
+          <h3 class="event-title">THE AFTER PARTY</h3>
+          <p class="event-time">11:00 PM</p>
+          <p class="venue-name">Le Rooftop Lounge</p>
+          <p class="venue-address">12 Rue de la Fête, Paris</p>
+          <a href="https://maps.google.com/?q=12+Rue+de+la+Fête+Paris" target="_blank" rel="noopener" class="btn-map">VIEW MAP</a>
+        </div>
+      </div>
 
-                <option>
-                    Regretfully Decline
-                </option>
+      <!-- ⏳ Compte à Rebours Haut de Gamme -->
+      <div class="countdown-wrapper">
+        <h3 class="countdown-title">Counting Down to Forever</h3>
+        <div id="countdown" class="countdown-container">
+          <div class="countdown-box"><span id="cd-days">00</span><label>Days</label></div>
+          <div class="countdown-box"><span id="cd-hours">00</span><label>Hours</label></div>
+          <div class="countdown-box"><span id="cd-minutes">00</span><label>Minutes</label></div>
+          <div class="countdown-box"><span id="cd-seconds">00</span><label>Seconds</label></div>
+        </div>
+      </div>
 
-            </select>
+      <!-- Action Calendrier -->
+      <div class="calendar-action">
+        <button id="btn-add-calendar" class="btn-primary">
+          <span>Add to Calendar</span>
+        </button>
+      </div>
 
-            <textarea
-                rows="5"
-                placeholder="Leave us a message..."></textarea>
+      <!-- 🌹 Footer -->
+      <footer class="wedding-footer">
+        <p class="footer-names">Marco &amp; Anaël</p>
+        <p class="footer-tagline">We can't wait to celebrate with you.</p>
+      </footer>
+    </section>
 
-            <button
-                type="submit"
-                class="begin-button">
+  </main>
 
-                Send RSVP
+  <!-- Librairies Externes : GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
-<footer id="footer">
-
-    <div class="container">
-
-        <h2 class="script">
-
-            Marco & Anaël
-
-        </h2>
-
-        <p>
-
-            Thank you for being part of our story.
-
-        </p>
-
-        <small>
-
-            © 2027 The Journey To Forever
-
-        </small>
-
-    </div>
-
-</footer>
-
-</div>
-
-<audio
-    id="backgroundMusic"
-    loop>
-
-    <source
-        src="assets/audio/music.mp3"
-        type="audio/mpeg">
-
-</audio>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/intro.js"></script>
-<script src="assets/js/envelope.js"></script>
-<script src="assets/js/story.js"></script>
-<script src="assets/js/gallery.js"></script>
-<script src="assets/js/countdown.js"></script>
-<script src="assets/js/music.js"></script>
-
+  <!-- JavaScript Scripts -->
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
-
 </html>
