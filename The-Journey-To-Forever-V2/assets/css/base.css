@@ -1,0 +1,230 @@
+/* ==========================================================
+   THE JOURNEY TO FOREVER
+   BASE
+========================================================== */
+
+*,
+*::before,
+*::after{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+    font-size:16px;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    background:var(--background-primary);
+
+    color:var(--text-primary);
+
+    font-family:var(--font-body);
+
+    font-size:var(--fs-base);
+
+    line-height:1.7;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-rendering:optimizeLegibility;
+
+}
+
+/* ==========================================================
+   MEDIA
+========================================================== */
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+svg{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+}
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:var(--transition-fast);
+
+}
+
+/* ==========================================================
+   LISTS
+========================================================== */
+
+ul,
+ol{
+
+    list-style:none;
+
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font:inherit;
+
+}
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+input,
+textarea,
+select{
+
+    font:inherit;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+}
+
+/* ==========================================================
+   HEADINGS
+========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family:var(--font-title);
+
+    font-weight:500;
+
+    line-height:1.1;
+
+    color:var(--black);
+
+}
+
+h1{
+
+    font-size:clamp(3rem,8vw,6rem);
+
+}
+
+h2{
+
+    font-size:clamp(2.4rem,6vw,4rem);
+
+}
+
+h3{
+
+    font-size:clamp(1.8rem,4vw,2.8rem);
+
+}
+
+/* ==========================================================
+   PARAGRAPHS
+========================================================== */
+
+p{
+
+    color:var(--text-secondary);
+
+}
+
+/* ==========================================================
+   SCRIPT FONT
+========================================================== */
+
+.script{
+
+    font-family:var(--font-script);
+
+}
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection{
+
+    background:var(--gold);
+
+    color:var(--white);
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--background-primary);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--gold);
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--gold-dark);
+
+}
