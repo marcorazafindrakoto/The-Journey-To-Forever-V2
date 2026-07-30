@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAddCalendar.addEventListener('click', () => {
       const title = encodeURIComponent("Mariage Marco & Anaël");
       const details = encodeURIComponent("Célébration du mariage de Marco et Anaël");
-      const location = encodeURIComponent("Château de Lumière, Versailles");
-      const startDate = "20260919T150000Z";
-      const endDate = "20260920T020000Z";
+      const location = encodeURIComponent("Ekar Soamiandalana/ Jardin d'Alicia Antsapandrano");
+      const startDate = "20270911T070000Z";
+      const endDate = "20270912T050000Z";
 
       const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
       window.open(googleCalendarUrl, '_blank');
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. ⏳ COMPTE À REBOURS
-  const targetDate = new Date('September 19, 2026 15:00:00').getTime();
+  const targetDate = new Date('September 11, 2027 10:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();

@@ -206,8 +206,7 @@ body {
   bottom: 10px;
   width: 90%; height: 85%;
   background-color: var(--color-bg-ivory);
-  border: 1px solid var(--color-gold-light);
-  border-radius: 2px;
+  border-radius: 10px;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -215,6 +214,25 @@ body {
   padding-top: 1rem;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Le conteneur de la photo */
+.card-photo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit; /* Hérite automatiquement des 10px de .envelope-card */
+  overflow: hidden;       /* Découpe l'image au niveau des coins arrondis */
+}
+
+/* L'image à l'intérieur du wrapper */
+.card-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* Remplit tout l'espace sans déformer l'image */
+  object-position: center; /* Centre la photo si elle est rognée */
+  display: block;
 }
 
 .card-hint {
@@ -277,7 +295,7 @@ body {
   background-color: var(--color-bg-ivory);
   border: 1px solid var(--color-gold-light);
   padding: 3rem 2rem;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 20px 40px rgba(11, 11, 11, 0.08);
   max-width: 550px;
   width: 100%;
@@ -437,7 +455,7 @@ body {
 /* Timeline & Details Cards */
 .timeline-header, .details-header { text-align: center !important; margin-bottom: 3rem; }
 .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; }
-.section-subtitle { font-size: 1.1rem; font-style: italic; color: var(--color-gold); margin-top: 0.5rem; }
+.section-subtitle { font-size: 2rem; font-style: italic; color: var(--color-gold); margin-top: 0.5rem; }
 
 .timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
 .timeline-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: linear-gradient(180deg, transparent, var(--color-gold) 15%, var(--color-gold) 85%, transparent); transform: translateX(-50%); }
@@ -532,9 +550,9 @@ body {
   position: absolute !important;
   top: 10px !important;
   right: 10px !important;
-  width: 40px !important;
+  width: 90px !important;
   height: auto !important;
-  opacity: 0.5 !important;
+  opacity: 1 !important;
   pointer-events: none !important;
   transition: opacity 0.3s ease !important;
 }
