@@ -1,0 +1,197 @@
+/* ==========================================================
+   INTRO
+========================================================== */
+
+#intro{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at top,
+            #FBF8F3 0%,
+            #F3E7D6 45%,
+            #E9D8C3 100%);
+
+}
+
+/* ==========================================================
+   BACKGROUND
+========================================================== */
+
+.intro-background{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+}
+
+.intro-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            rgba(255,255,255,.15),
+
+            rgba(255,255,255,.35)
+
+        );
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.intro-content{
+
+    position:relative;
+
+    z-index:10;
+
+    width:min(900px,90%);
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   SUBTITLE
+========================================================== */
+
+.intro-subtitle{
+
+    font-size:1rem;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+
+    color:var(--gold);
+
+    margin-bottom:32px;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.intro-title{
+
+    font-family:var(--font-title);
+
+    font-size:clamp(4rem,9vw,7rem);
+
+    font-weight:500;
+
+    color:var(--black);
+
+    line-height:1.05;
+
+    margin-bottom:28px;
+
+}
+
+.intro-title span{
+
+    font-family:var(--font-script);
+
+    color:var(--gold);
+
+    font-size:.7em;
+
+}
+
+/* ==========================================================
+   QUOTE
+========================================================== */
+
+.intro-quote{
+
+    font-size:1.25rem;
+
+    font-style:italic;
+
+    color:var(--text-secondary);
+
+    margin-bottom:56px;
+
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.begin-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+
+        18px 42px;
+
+    border-radius:999px;
+
+    border:1px solid var(--gold);
+
+    background:transparent;
+
+    color:var(--gold);
+
+    font-family:var(--font-title);
+
+    font-size:1rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:
+
+        transform .35s ease,
+
+        background .35s ease,
+
+        color .35s ease,
+
+        box-shadow .35s ease;
+
+}
+
+.begin-button:hover{
+
+    transform:translateY(-3px);
+
+    background:var(--gold);
+
+    color:#fff;
+
+    box-shadow:
+
+        0 15px 35px rgba(166,138,109,.28);
+
+}
