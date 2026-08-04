@@ -157,3 +157,13 @@
     max-width: 340px !important;
   }
 }
+@media screen and (max-width: 768px) {
+
+  .event-card .card-corner-img {
+    width: 85px !important;
+    height: auto !important;
+    top: -5px !important;   /* Décalage éventuel vers le haut */
+    right: -5px !important; /* Décalage éventuel vers la droite */
+  }
+
+}
